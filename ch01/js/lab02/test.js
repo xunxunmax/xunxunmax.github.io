@@ -1,17 +1,27 @@
 var canvas;
 var gl;
 
-var points = [];
-var colors = [];
+var points = [];//点数组
+var colors = [];//颜色数组
 
 var numTimesToSubdivide = 0;
 
-var theta=0;
-var turntheta=0;
+var theta=0;//旋转角度
+var turntheta=0;//扭曲变形度
 
+var vertices = [
+	vec3(  0.0000,  0.0000, -1.0000 ),
+	vec3(  0.0000,  0.9428,  0.3333 ),
+	vec3( -0.8165, -0.4714,  0.3333 ),
+	vec3(  0.8165, -0.4714,  0.3333 )
+];
 
-
-
+var baseColors = [
+	vec3(1.0, 0.0, 0.0),
+	vec3(0.0, 1.0, 0.0),
+	vec3(0.0, 0.0, 1.0),
+	vec3(0.0, 0.0, 0.0)
+];
 
 function init()
 {
@@ -29,44 +39,41 @@ function init()
 			break;
 	   }
 	};
-	document.getElementById("slider").onchange = function() {
+
+	document.getElementById("slider").onchange = function() {//层数事件
 		numTimesToSubdivide = event.srcElement.value;
 		document.getElementById("num").innerHTML = numTimesToSubdivide;
 	};
 	
-	document.getElementById("thetaSlider").onchange = function() {
+	document.getElementById("thetaSlider").onchange = function() {//旋转事件
 		theta = event.srcElement.value* Math.PI/180.0;
 		document.getElementById("theta").innerHTML =event.srcElement.value;
 	};
 	
-	document.getElementById("turnthetaSlider").onchange = function() {
+	document.getElementById("turnthetaSlider").onchange = function() {//扭曲变形事件
 		turntheta = event.srcElement.value* Math.PI/180.0;
 		document.getElementById("shape").innerHTML =event.srcElement.value;
 	};
+	window.onkeydown = function( event ) {
+		var key = String.fromCharCode(event.keyCode);
+		switch( key ) {
+		  case '1':
+			aaa();
+			break;
+		  case '2':
+			bbb();
+			break;
+		  case '3':
+			ccc();
+			break;
+		}
+	};
 };
-function xxx(a)
-{
-
-	
-	// Load the data into the GPU
-	// if(a == 2){
-
-	// }
-	// else if(a == 3)
-	// {
-
-	// }
-}
-function aaa(){
+function aaa(){//绘制原三角形
 	canvas = document.getElementById( "gl-canvas" );
 	gl = WebGLUtils.setupWebGL( canvas );
 	if ( !gl ) { alert( "WebGL isn't available" ); }
-	var vertices = [
-		vec3(  0.0000,  0.0000, -1.0000 ),
-		vec3(  0.0000,  0.9428,  0.3333 ),
-		vec3( -0.8165, -0.4714,  0.3333 ),
-		vec3(  0.8165, -0.4714,  0.3333 )
-	];
+	//可放数组
 	divideTriangleOne( vertices[1], vertices[2], vertices[3],numTimesToSubdivide);
 	gl.viewport( 0, 0, canvas.width, canvas.height );
 	gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -78,7 +85,7 @@ function aaa(){
 	gl.useProgram( program );
 	var bufferId = gl.createBuffer();
 	gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
-	gl.bufferData( gl.ARRAY_BUFFER, 1000000, gl.STATIC_DRAW );
+	gl.bufferData( gl.ARRAY_BUFFER, 5000000, gl.STATIC_DRAW );
 	gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
 	
 	// Associate out shader variables with our data buffer
@@ -93,20 +100,15 @@ function aaa(){
 	gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(colors));
 	
 	var vColor = gl.getAttribLocation( program, "vColor" );
-	gl.vertexAttribPointer( vColor, 2, gl.FLOAT, false, 0, 0 );
+	gl.vertexAttribPointer( vColor, 3, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vColor );
 	renderOne();
 }
-function bbb(){
+function bbb(){//绘制线框三角形
 	canvas = document.getElementById( "gl-canvas" );
 	gl = WebGLUtils.setupWebGL( canvas );
 	if ( !gl ) { alert( "WebGL isn't available" ); }
-	var vertices = [
-		vec3(  0.0000,  0.0000, -1.0000 ),
-		vec3(  0.0000,  0.9428,  0.3333 ),
-		vec3( -0.8165, -0.4714,  0.3333 ),
-		vec3(  0.8165, -0.4714,  0.3333 )
-	];
+	//可放数组
 	divideTriangleTwo( vertices[1], vertices[2], vertices[3],numTimesToSubdivide);
 	gl.viewport( 0, 0, canvas.width, canvas.height );
 	gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -118,7 +120,7 @@ function bbb(){
 	gl.useProgram( program );
 	var bufferId = gl.createBuffer();
 	gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
-	gl.bufferData( gl.ARRAY_BUFFER, 1000000, gl.STATIC_DRAW );
+	gl.bufferData( gl.ARRAY_BUFFER, 5000000, gl.STATIC_DRAW );
 	gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
 	
 	// Associate out shader variables with our data buffer
@@ -133,20 +135,15 @@ function bbb(){
 	gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(colors));
 	
 	var vColor = gl.getAttribLocation( program, "vColor" );
-	gl.vertexAttribPointer( vColor, 2, gl.FLOAT, false, 0, 0 );
+	gl.vertexAttribPointer( vColor, 3, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vColor );
 	renderTwo();
 }
-function ccc(){
+function ccc(){//绘制正四面体
 	canvas = document.getElementById( "gl-canvas" );
 	gl = WebGLUtils.setupWebGL( canvas );
 	if ( !gl ) { alert( "WebGL isn't available" ); }
-	var vertices = [
-		vec3(  0.0000,  0.0000, -1.0000 ),
-		vec3(  0.0000,  0.9428,  0.3333 ),
-		vec3( -0.8165, -0.4714,  0.3333 ),
-		vec3(  0.8165, -0.4714,  0.3333 )
-	];
+	//可放数组
 	divideTetra( vertices[0], vertices[1], vertices[2], vertices[3],numTimesToSubdivide);
 	gl.viewport( 0, 0, canvas.width, canvas.height );
 	gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -158,7 +155,7 @@ function ccc(){
 	gl.useProgram( program );
 	var bufferId = gl.createBuffer();
 	gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
-	gl.bufferData( gl.ARRAY_BUFFER, 1000000, gl.STATIC_DRAW );
+	gl.bufferData( gl.ARRAY_BUFFER, 5000000, gl.STATIC_DRAW );
 	gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(points));
 	
 	// Associate out shader variables with our data buffer
@@ -193,9 +190,17 @@ function turnAll(a){
 	return a;
 }
 //第一种绘制---------------------------------------------
-function triangleOne( a, b, c , color)
+function triangleOnec( a, color )
 {
-	points.push( a, b, c );
+	colors.push( baseColors[color] );
+	points.push( a );
+
+}
+function triangleOne( a, b, c )
+{
+	triangleOnec( a, 0 );
+	triangleOnec( b, 0 );
+	triangleOnec( c, 0 );
 }
 function divideTriangleOne( a, b, c, count )
 {
@@ -223,9 +228,18 @@ function divideTriangleOne( a, b, c, count )
     }
 }
 //第二种绘制----------------------------------------------
+function triangleTwoc( a, b, color )
+{
+	colors.push( baseColors[color] );
+	points.push( a );
+	colors.push( baseColors[color] );
+	points.push( b );
+}
 function triangleTwo( a, b, c )
 {
-    points.push( a, b, b, c, c, a );
+	triangleTwoc( a, b, 0 );
+	triangleTwoc( a, c, 0 );
+	triangleTwoc( b, c, 0 );
 }
 
 function divideTriangleTwo( a, b, c, count )
@@ -252,18 +266,11 @@ function divideTriangleTwo( a, b, c, count )
         divideTriangleTwo( c, ac, bc, count );
         divideTriangleTwo( b, bc, ab, count );
 		divideTriangleTwo( ab, bc, ac, count );
-		
     }
 }
 //第三种绘制----------------------------------------------
-function triangle( a, b, c, color )
+function triangleThreec( a, b, c, color )
 {
-	var baseColors = [
-		vec3(1.0, 0.0, 0.0),
-		vec3(0.0, 1.0, 0.0),
-		vec3(0.0, 0.0, 1.0),
-		vec3(0.0, 0.0, 0.0)
-	];
 	colors.push( baseColors[color] );
 	points.push( a );
 	colors.push( baseColors[color] );
@@ -276,10 +283,10 @@ function tetra( a, b, c, d )
 {
     // tetrahedron with each side using
     // a different color
-    triangle( a, c, b, 0 );
-    triangle( a, c, d, 1 );
-    triangle( a, b, d, 2 );
-    triangle( b, c, d, 3 );
+    triangleThreec( a, c, b, 0 );
+    triangleThreec( a, c, d, 1 );
+    triangleThreec( a, b, d, 2 );
+    triangleThreec( b, c, d, 3 );
 }
 
 function divideTetra( a, b, c, d, count )
@@ -308,7 +315,7 @@ function divideTetra( a, b, c, d, count )
 }
 //render------------------------------------------------
 window.onload = init;
-
+//One---OriginTriangle
 function renderOne()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
@@ -317,7 +324,7 @@ function renderOne()
 	colors = [];
     requestAnimFrame(aaa);
 }
-//two---linesTriangle
+//two---LinesTriangle
 function renderTwo()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
