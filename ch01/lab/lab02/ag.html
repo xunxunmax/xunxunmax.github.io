@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<title>lab02_ag</title>
+	<script id="vertex-shader" type="x-shader/x-vertex">
+		attribute vec3 vPosition;
+		void main(){
+			gl_Position = vec4(vPosition,1.0);
+		}
+	</script>
+
+	<script id="fragment-shader" type="x-shader/x-fragment">
+		precision mediump float;
+		void main(){
+			gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+		}
+	</script>
+	
+	<script type="text/javascript" src="../../js/common/webgl-utils.js"></script>
+	<script type="text/javascript" src="../../js/common/initShaders.js"></script>
+	<script type="text/javascript" src="../../js/common/gl-matrix-min.js"></script>
+	<!-- <script type="text/javascript" src="../../js/common/MV.js"></script> -->
+	<script type="text/javascript" src="../../js/lab02/ag.js"></script>
+</head>   
+
+	<body>
+
+	<canvas id="gl-canvas" width="512" height="512">
+	Oops ... your browser doesn't support the HTML5 canvas element
+	</canvas>
+	
+	<div>
+	recursive steps  0 <input id="slider" type="range"
+	 min="0" max="7" step="1" value="0" />7
+	</div>
+	<div>
+	recursive steps  -360 <input id="thetaSlider" type="range"
+	 min="-360" max="360" step="1" value="0" />360
+	</div>
+	<div>
+	recursive steps  -360 <input id="turnthetaSlider" type="range"
+	 min="-360" max="360" step="1" value="0" />360
+	</div>
+	
+	<select id="asdasd" size="3" value="0">
+		<option value="0">0层</option>
+		<option value="1">1层</option>
+		<option value="2">2层</option>
+	</select>
+
+	<script type="text/javascript">
+		document.getElementById("slider").onchange = function() {
+		    numTimesToSubdivide = event.srcElement.value;
+			init();
+		};
+		document.getElementById("thetaSlider").onchange = function() {
+		    theta = event.srcElement.value*Math.PI/180;
+			init();
+		};
+		document.getElementById("turnthetaSlider").onchange = function() {
+		    turntheta = event.srcElement.value*Math.PI/180;
+			init();
+		};
+		document.getElementById("asdasd").onclick = function(event){
+			switch(event.srcElement.index) {
+			  case 0:
+				numTimesToSubdivide = 0;
+				break;
+			  case 1:
+				numTimesToSubdivide = 1;
+				break;
+			  case 2:
+				numTimesToSubdivide = 2;
+				break;
+			}
+			init();
+		}
+	</script>
+	</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<title>labtwo</title>
+
+	<script id="vertex-shader" type="x-shader/x-vertex">
+	attribute vec3 vPosition;
+	attribute vec3 vColor;
+	varying vec4 color;
+	void main()
+		{
+			gl_Position = vec4(vPosition, 1.0);
+			color = vec4(vColor, 1.0);
+		}
+	</script>
+
+	<script id="fragment-shader" type="x-shader/x-fragment">
+	precision mediump float;
+	varying vec4 color;
+	void main()
+	{
+		gl_FragColor = color;
+	}
+	</script>
+	
+	<script type="text/javascript" src="../../js/common/webgl-utils.js"></script>
+	<script type="text/javascript" src="../../js/common/initShaders.js"></script>
+	<script type="text/javascript" src="../../js/common/gl-matrix-min.js"></script>
+	<script type="text/javascript" src="../../js/lab02/labtwo.js"></script>
+</head>   
+
+<body>
+	
+	<div style="float: left;">
+		<canvas id="gl-canvas" width="512" height="512">
+			Oops ... your browser doesn't support the HTML5 canvas element
+		</canvas>
+	</div>
+
+	<div style="float: left;">
+		<div>
+			<select id="Controls" size="3" value="0">
+				<option value="0">三角形</option>
+				<option value="1">线框三角形</option>
+				<option value="2">正四面体</option>
+			</select>
+		</div>
+		<p>(PS:也可以使用键盘的"↕","↔","Z","X","C"键来转换模式)</p>
+		
+		<div>
+		当前层数:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 <input id="slider" type="range" min="0" max="7" step="1" value="0" />7
+		</div>
+		<div>输入你要的当前层数:
+			<input type="text" id="numnum" style="width: 50px;">
+			<input type="button" name="numbtn" id="numnumbtn" value="确定" />
+		</div>
+		当前层数为：<p id="num"></p>
+		
+		<div>
+		旋转角度: -360° <input id="thetaSlider" type="range" min="-360" max="360" step="1" value="0" />360°
+		</div>
+		<div>输入你要的旋转角度:
+			<input type="text" id="thethe" style="width: 50px;">
+			<input type="button" name="thebtn" id="thethebtn" value="确定" />
+		</div>
+		当前旋转角度为(°)：<p id="theta"></p>
+		
+		<div>
+		形变角度: -360° <input id="turnthetaSlider" type="range" min="-360" max="360" step="1" value="0" />360°
+		</div>
+		<div>输入你要的形变角度:
+			<input type="text" id="shapeshape" style="width: 50px;">
+			<input type="button" name="shapebtn" id="shapeshapebtn" value="确定" />
+		</div>
+		当前形变角度为(°)：<p id="shape"></p>
+	</div>
+	
+	<script type="text/javascript">
+		document.getElementById("slider").onchange = function() {
+		    numTimesToSubdivide = event.srcElement.value;
+			document.getElementById("num").innerHTML = numTimesToSubdivide;
+			init();
+		};
+		document.getElementById("thetaSlider").onchange = function() {
+		    theta = event.srcElement.value*Math.PI/180;
+			document.getElementById("theta").innerHTML =event.srcElement.value;
+			init();
+		};
+		document.getElementById("turnthetaSlider").onchange = function() {
+		    turntheta = event.srcElement.value*Math.PI/180;
+			document.getElementById("shape").innerHTML =event.srcElement.value;
+			init();
+		};
+		
+		document.getElementById("numnumbtn").onclick = function(){
+			var x=document.getElementById("numnum").value;
+			numTimesToSubdivide = x;
+			document.getElementById("num").innerHTML = numTimesToSubdivide;
+			document.getElementById("numnum").value = "";
+			init();
+		}
+		document.getElementById("thethebtn").onclick = function(){
+			
+			theta = document.getElementById("thethe").value*Math.PI/180;
+			document.getElementById("theta").innerHTML = document.getElementById("thethe").value;
+			document.getElementById("thethe").value = "";
+			init();
+		}
+		document.getElementById("shapeshapebtn").onclick = function(){
+			turntheta = document.getElementById("shapeshape").value*Math.PI/180;
+			document.getElementById("shape").innerHTML = document.getElementById("shapeshape").value;
+			document.getElementById("shapeshape").value = "";
+			init();
+		}
+		
+		document.getElementById("Controls").onclick = function(event){
+			switch(event.srcElement.index) {
+			  case 0:
+				aaa();
+				//init();
+				break;
+			  case 1:
+				bbb();
+				//init();
+				break;
+			  case 2:
+				ccc();
+				//init();
+				break;
+			}
+		}
+		window.onkeydown = function( event ) {
+			var key = String.fromCharCode(event.keyCode);
+			switch( key ) {
+			  case 'Z':
+				aaa();
+				break;
+			  case 'X':
+				bbb();
+				break;
+			  case 'C':
+				ccc();
+				break;
+			}
+		};
+	</script>
+</body>
+</html>
