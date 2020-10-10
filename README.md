@@ -16,4 +16,4 @@
 
 |    | 
 | ---- |
-|[实验2](ch01/lab/lab02/test.html)|
+|[实验2](ch01/lab/lab02/labtwo.html)|
