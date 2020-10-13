@@ -55,8 +55,12 @@
 		<div>输入你要的当前层数:
 			<input type="text" id="numnum" style="width: 50px;">
 			<input type="button" name="numbtn" id="numnumbtn" value="确定" />
+			<br />
+			当前层数为：<span id="num"></span>
+			<br />
+			<br />
 		</div>
-		当前层数为：<p id="num"></p>
+		
 		
 		<div>
 		旋转角度: -360° <input id="thetaSlider" type="range" min="-360" max="360" step="1" value="0" />360°
@@ -64,8 +68,12 @@
 		<div>输入你要的旋转角度:
 			<input type="text" id="thethe" style="width: 50px;">
 			<input type="button" name="thebtn" id="thethebtn" value="确定" />
+			<br />
+			当前旋转角度为(°)：<span id="theta"></span>
+			<br />
+			<br />
 		</div>
-		当前旋转角度为(°)：<p id="theta"></p>
+		
 		
 		<div>
 		形变角度: -360° <input id="turnthetaSlider" type="range" min="-360" max="360" step="1" value="0" />360°
@@ -73,8 +81,12 @@
 		<div>输入你要的形变角度:
 			<input type="text" id="shapeshape" style="width: 50px;">
 			<input type="button" name="shapebtn" id="shapeshapebtn" value="确定" />
+			<br />
+			当前形变角度为(°)：<span id="shape"></span>
+			<br />
+			<br />
 		</div>
-		当前形变角度为(°)：<p id="shape"></p>
+		
 	</div>
 	
 	<script type="text/javascript">
@@ -119,15 +131,15 @@
 			switch(event.srcElement.index) {
 			  case 0:
 				aaa();
-				//init();
+				init();
 				break;
 			  case 1:
 				bbb();
-				//init();
+				init();
 				break;
 			  case 2:
 				ccc();
-				//init();
+				init();
 				break;
 			}
 		}
