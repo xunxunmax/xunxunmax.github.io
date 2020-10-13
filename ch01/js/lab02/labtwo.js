@@ -359,7 +359,7 @@ function divideTetra( a, b, c, d, count )
 function renderOrigin()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.drawArrays( gl.TRIANGLES, 0, points.length );
+    gl.drawArrays( gl.TRIANGLES, 0, points.length/3 );
     points = [];
 	colors = [];
 }
@@ -367,14 +367,14 @@ function renderOrigin()
 function renderlines()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.drawArrays( gl.LINES, 0, points.length );
+    gl.drawArrays( gl.LINES, 0, points.length/3 );
     points = [];
 	colors = [];
 }
 function renderTetra()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.drawArrays( gl.TRIANGLES, 0, points.length );
+    gl.drawArrays( gl.TRIANGLES, 0, points.length/3 );
 	points = [];
 	colors = [];
 }
