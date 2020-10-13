@@ -146,8 +146,25 @@ function turnAll(a){
 function triangleOriginpart( a, color )
 {
 	// add colors and vertices for one triangle
-	colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
-	points.push(a[0],a[1],a[2]);
+	// colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
+	// points.push(a[0],a[1],a[2]);
+	for (var k = 0; k < 3; k++) {
+	    colors.push(baseColors[color * 3 + k]);
+	}
+	for (var k = 0; k < 3; k++)
+	    points.push(a[k]);
+	
+	// for (var k = 0; k < 3; k++) {
+	//     colors.push(baseColor[color * 3 + k]);
+	// }
+	// for (var k = 0; k < 3; k++)
+	//     points.push(b[k]);
+	
+	// for (var k = 0; k < 3; k++) {
+	//     colors.push(baseColor[color * 3 + k]);
+	// }
+	// for (var k = 0; k < 3; k++)
+	//     points.push(c[k]);
 
 }
 function triangleOrigin( a, b, c )
@@ -192,10 +209,28 @@ function divideTriangleOrigin( a, b, c, count )
 function trianglelinespart( a, b, color )
 {
     // add colors and vertices for one triangle
-	colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
-	points.push(a[0],a[1],a[2]);
-	colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
-	points.push(b[0],b[1],b[2]);
+	// colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
+	// points.push(a[0],a[1],a[2]);
+	// colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
+	// points.push(b[0],b[1],b[2]);
+	
+	for (var k = 0; k < 3; k++) {
+	    colors.push(baseColors[color * 3 + k]);
+	}
+	for (var k = 0; k < 3; k++)
+	    points.push(a[k]);
+	
+	for (var k = 0; k < 3; k++) {
+	    colors.push(baseColors[color * 3 + k]);
+	}
+	for (var k = 0; k < 3; k++)
+	    points.push(b[k]);
+	
+	// for (var k = 0; k < 3; k++) {
+	//     colors.push(baseColor[color * 3 + k]);
+	// }
+	// for (var k = 0; k < 3; k++)
+	//     points.push(c[k]);
 }
 function trianglelines( a, b, c )
 {
@@ -243,14 +278,31 @@ function divideTrianglelines( a, b, c, count )
 function trianglepart( a, b, c, color )
 {
     // add colors and vertices for one triangle
-	colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
-	points.push(a[0],a[1],a[2]);
+	// colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
+	// points.push(a[0],a[1],a[2]);
 	
-	colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);	
-	points.push(b[0],b[1],b[2]);
+	// colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);	
+	// points.push(b[0],b[1],b[2]);
 
-	colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
-	points.push(c[0],c[1],c[2]);
+	// colors.push(baseColors[3*color],baseColors[3*color+1],baseColors[3*color+2]);
+	// points.push(c[0],c[1],c[2]);
+	for (var k = 0; k < 3; k++) {
+	    colors.push(baseColors[color * 3 + k]);
+	}
+	for (var k = 0; k < 3; k++)
+	    points.push(a[k]);
+	
+	for (var k = 0; k < 3; k++) {
+	    colors.push(baseColors[color * 3 + k]);
+	}
+	for (var k = 0; k < 3; k++)
+	    points.push(b[k]);
+	
+	for (var k = 0; k < 3; k++) {
+	    colors.push(baseColors[color * 3 + k]);
+	}
+	for (var k = 0; k < 3; k++)
+	    points.push(c[k]);
 }
 function tetra( a, b, c, d )
 {
