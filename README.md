@@ -22,5 +22,4 @@
 
 |    | 
 | ---- |
-|[实验3-1](ch01/lab/lab03/lab3_ok.html)|
-|[实验3-2](ch01/lab/lab03/relax.html)|
+|[实验3-1](ch01/lab/lab03/lab3_ok.html)| |[实验3-2](ch01/lab/lab03/relax.html)|
