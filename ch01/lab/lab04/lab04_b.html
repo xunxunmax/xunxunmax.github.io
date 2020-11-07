@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=utf-8">
+	<title>lab04_abd</title>
+	<script id="vertex-shader" type="x-shader/x-vertex">
+	attribute vec4 vPosition;
+	attribute vec4 vColor;
+	varying vec4 fColor;
+
+	uniform mat4 rmat;
+	
+	uniform vec3 tran;
+	
+	uniform float scale;
+	void main()
+	{
+		mat4 tra = mat4(
+						 1.0,  0.0,  0.0, 0.0,
+						 0.0,  1.0,  0.0, 0.0,
+						 0.0,  0.0,  1.0, 0.0,
+						 tran.x,  tran.y,  tran.z, 1.0
+		);
+		
+		mat4 sca = mat4(
+						 scale,  0.0,  0.0, 0.0,
+						 0.0,  scale,  0.0, 0.0,
+						 0.0,  0.0,  scale, 0.0,
+						 0.0,  0.0,  0.0, 1.0
+		);
+		
+		
+		gl_Position = sca * tra * rmat * vPosition;
+		fColor = vColor;
+	}
+	</script>
+
+	<script id="fragment-shader" type="x-shader/x-fragment">
+	precision mediump float;
+	varying vec4 fColor;
+
+	void main()
+	{
+		gl_FragColor = fColor;
+	}
+	</script>
+		<script type="text/javascript" src="../../js/common/webgl-utils.js"></script>
+		<script type="text/javascript" src="../../js/common/initShaders.js"></script>
+		<script type="text/javascript" src="../../js/common/gl-matrix-min.js"></script>
+		<script type="text/javascript" src="../../js/lab04/lab04_b.js"></script>
+</head>
+<body onload="initCube()">
+	<h1>旋转的立方体-跟踪球控制</h1>
+	<div style="float: left;">
+		<canvas id="gl-canvas" width="512" height="512">
+			你的浏览器不支持HTML5 canvas元素
+		</canvas>
+	</div>
+
+	
+	<div style="float: left;">
+	
+	小<input type="range" name="scalescale" id="scale" value="1" min="0" max="2" step="0.01" />大
+	<br / >
+	左<input type="range" name="translationx" id="tx" value="0" min="-1" max="1" step="0.01" />右
+	<br / >
+	下<input type="range" name="translationy" id="ty" value="0" min="-1" max="1" step="0.01" />上
+	<br / >
+	后<input type="range" name="translationz" id="tz" value="0" min="-1" max="1" step="0.01" />前
+	<br / >
+		<div style="float: left;">
+		<p>鼠标按下时</p>
+		x1:<span id="x1"></span>
+		<br/>
+		y1:<span id="y1"></span>
+		<br/>
+		<p>鼠标移动时</p>
+		x2:<span id="x2"></span>
+		<br/>
+		y2:<span id="y2"></span>
+		<br/>
+		<p>鼠标松开时</p>
+		x3:<span id="x3"></span>
+		<br/>
+		y3:<span id="y3"></span>
+		</div>
+	
+	</div>	
+	
+
+</body>
+</html>

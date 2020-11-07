@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<title>lab_a</title>
+		<!-- 顶点着色器和片元着色器代码 -->
+		<script id="vertex-shader" type="x-shader/x-vertex">
+			attribute vec4 vPosition;
+			attribute vec4 cPosition;
+			varying vec4 fcolor;
+			void main(){
+				gl_Position = vPosition;
+				fcolor = cPosition;
+			}
+		</script>
+		<script id="fragment-shader" type="x-shader/x-fragment">
+			precision mediump float;
+			varying vec4 fcolor;
+			void main(){
+				gl_FragColor = fcolor;//vec4( 0.95, 0.65, 0.6, 1.0 );
+			}
+		</script>
+		<!-- 一组相关的JS库 -->
+		<script type="text/javascript" src="../../js/common/webgl-utils.js"></script>
+		<script type="text/javascript" src="../../js/common/initShaders.js"></script>
+		<script type="text/javascript" src="../../js/common/gl-matrix-min.js"></script>
+		<!-- 绘制三角形的JS代码 -->
+		<script type="text/javascript" src="../../js/lab04/circle.js"></script>
+	</head>
+	<body onload="init()">
+		<canvas id="triangle-canvas" style="border:none;" width="500" height="500"></canvas>
+		1<input type="range" name="circle_shape" id="circle_shape" value="32" min="1" max="64" step="1" />64
+		
+		<p>还不能将4个图形整合在一起</p>
+	</body>
+</html>

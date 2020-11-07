@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Lab_test</title>
+		<script id="v-shader" type="x-shader/x-vertex">
+			attribute vec4 vPosition;
+			attribute vec4 vColor;
+			
+			varying vec4 fColor;
+			
+			uniform vec3 theta;
+			uniform vec3 tran;
+			uniform float scale;
+			
+			void main(){
+				vec3 cost = cos( theta );
+				vec3 sint = sin( theta );
+
+				mat4 sca = mat4(
+								 1.25+0.75*sin(scale),  0.0,  0.0, 0.0,
+								 0.0,  1.25+0.75*sin(scale),  0.0, 0.0,
+								 0.0,  0.0,  1.25+0.75*sin(scale), 0.0,
+								 0.0,  0.0,  0.0, 1.0
+				);
+				mat4 rx = mat4(  1.0,  0.0,  0.0, 0.0,
+								 0.0,  cost.x,  sint.x, 0.0,
+								 0.0,  -sint.x,  cost.x, 0.0,
+								 0.0,  0.0,  0.0, 1.0
+								 );
+				
+				mat4 ry = mat4(  cost.y,  0.0, -sint.y,  0.0,
+								 0.0,  1.0,  0.0,  0.0,
+								 sint.y,  0.0,  cost.y,  0.0,
+								 0.0,  0.0,  0.0,  1.0
+								 );
+				
+				mat4 rz = mat4(  cost.z,  sint.z,  0.0,  0.0,
+								 -sint.z,  cost.z,  0.0,  0.0,
+								 0.0,  0.0,  1.0,  0.0,
+								 0.0,  0.0,  0.0,  1.0
+								 );
+				mat4 tr = mat4(  1.0,  0.0,  0.0,  0.0,
+							     0.0,  1.0,  0.0,  0.0,
+							     0.0,  0.0,  1.0,  0.0,
+								 tran.x, tran.y, tran.z, 1.0);
+
+				gl_Position = tr * sca * rz * ry * rx * vPosition;
+				fColor = vColor;
+			}
+		</script>
+
+		<script id="f-shader" type="x-shader/x-fragment">
+			precision mediump float;
+			varying vec4 fColor;
+			void main(){
+				gl_FragColor = fColor;
+			}
+		</script>
+		<script type="text/javascript" src="../../js/common/webgl-utils.js"></script>
+		<script type="text/javascript" src="../../js/common/initShaders.js"></script>
+		<script type="text/javascript" src="../../js/common/gl-matrix-min.js"></script>
+		<!-- 绘制三角形的JS代码 -->
+		<script type="text/javascript" src="../../js/lab04/lab.js"></script>
+	</head>
+	<body>
+		<div style="float: left;">
+			<canvas id="canvas" width="512" height="512" style="float: left;">
+				你的浏览器不支持HTML5 canvas元素
+			</canvas>
+		</div>
+		
+		<select id="Controls" size="4" value="0">
+			<option value="0">正三角形</option>
+			<option value="1">正方形</option>
+			<option value="2">立方体</option>
+			<option value="3">圆形</option>
+		</select>
+		<br /><br />
+		
+		<div style="float: left;">
+			<div>清空画布:
+			<input type="button" name="clearAll" id="clearAll" value="清空" />				
+			</div><br />
+			<div>圆形种类:
+			<select id="cirControls" size="2" value="0">
+			<option value="0">实心圆形</option>
+			<option value="1">线框圆形</option>
+			</select>
+			<br />
+			圆形边数:1<input type="range" name="circle_shape" id="circle_shape" value="12" min="1" max="64" step="1" />64<br />
+			圆形颜色:<input type="color" name="circle_color" id="circle_color" value="#ffc864" /><br />
+			当前圆形边数为: <span id="cir_num">12</span>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			document.getElementById("clearAll").onclick = function(){
+				Tran_triangle = [];
+				Tran_square = [];
+				Tran_cube = [];
+				Tran_circle=[];
+			}
+			
+			document.getElementById("circle_shape").onchange = function(event){
+				num = event.target.value;
+				document.getElementById("cir_num").innerHTML=num;
+				makeCircle();
+			}
+			
+			
+			document.getElementById("circle_color").addEventListener("input", function (event) {
+			    var rgbHex = [];
+				var hexcolor = this.value.substring(1);
+				console.log(hexcolor);
+			    var rgbHex = hexcolor.match(/.{1,2}/g);
+				console.log(rgbHex);
+			    CirR=parseInt(rgbHex[0], 16) * 1.0 / 255.0;
+			    CirG=parseInt(rgbHex[1], 16) * 1.0 / 255.0;
+			    CirB=parseInt(rgbHex[2], 16) * 1.0 / 255.0;
+				makeCircle();
+			});
+			
+			document.getElementById("Controls").onclick = function(event){
+				switch(event.target.index) {
+				  case 0:
+					kind=0;
+					break;
+				  case 1:
+					kind=1;
+					break;
+				  case 2:
+					kind=2;
+					break;
+				  case 3:
+					kind=3;	
+				  	break;
+				}
+			}
+			document.getElementById("cirControls").onclick = function(event){
+				switch(event.target.index) {
+				  case 0:
+					cirkind=0;
+					break;
+				  case 1:
+					cirkind=1;
+					break;
+				}
+			}
+		</script>
+	</body>
+</html>
