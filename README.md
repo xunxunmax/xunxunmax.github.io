@@ -28,4 +28,4 @@
 
 |    |    |    |
 | ---- | ---- | ---- |
-|[实验4-1](ch01/lab/lab04/lab4_a.html)|[实验4-2](ch01/lab/lab04/lab04_b.html)|[实验4-3](ch01/lab/lab04/lab.html)|
+|[实验4-1](ch01/lab/lab04/lab04_a.html)|[实验4-2](ch01/lab/lab04/lab04_b.html)|[实验4-3](ch01/lab/lab04/lab.html)|
