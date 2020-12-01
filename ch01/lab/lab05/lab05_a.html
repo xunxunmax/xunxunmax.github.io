@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script id="vertex-shader" type="x-shader/x-vertex">
+        	attribute vec4 vPosition;
+        	attribute vec4 vColor;
+        	varying vec4 fColor;
+        
+        	uniform mat4 modelViewMatrix;
+        	uniform mat4 projectionMatrix;
+			//uniform float scale;
+        
+        	void main()
+        	{
+				// mat4 sca = mat4(
+				// 				 scale,  0.0,  0.0, 0.0,
+				// 				 0.0,  scale,  0.0, 0.0,
+				// 				 0.0,  0.0,  scale, 0.0,
+				// 				 0.0,  0.0,  0.0, 1.0
+				// );
+        		gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+        		fColor = vColor;	
+        	}
+        </script>
+        
+        <script id="fragment-shader" type="x-shader/x-fragment">
+        	precision mediump float;
+        
+        	varying vec4 fColor;
+        
+        	void main()
+        	{
+                gl_FragColor = fColor;
+        	}
+        </script>
+        
+        <script type="text/javascript" src="../../js/common/webgl-utils.js"></script>
+        <script type="text/javascript" src="../../js/common/initShaders.js"></script>
+        <script type="text/javascript" src="../../js/common/gl-matrix-min.js"></script>
+        <script type="text/javascript" src="../../js/common/objloader.js"></script>
+        <script type="text/javascript" src="../../js/lab05/lab05_a.js"></script>
+    </head>
+    <body>
+        <div style="float: left;">
+            <canvas id="gl-canvas" width="800" height="800">
+                你的浏览器不支持HTML5 Canvas元素
+            </canvas>
+        </div>
+		
+		<div style="float: left;">
+        <div style="border:5px red">
+            <label>选择一个OBJ模型文件</label>
+            <input type="file" id="fileInput"><pre id="fileDisplay"></pre>
+        </div>
+        <div>
+            <label>选择投影方式</label>
+            <input type="radio" id="ortho" name="projtype" value="1" checked><label>正交投影</label>
+            &nbsp;
+            <input type="radio" id="persp" name="projtype" value="2"><label>透视投影</label>&nbsp;<label id="projtyperes"></label>
+        </div>
+        <div>
+            <label>选择绘制方式</label>
+            <input type="radio" id="wire" name="drawtype" value="1" checked><label>线框模式</label>
+            &nbsp;
+            <input type="radio" id="solid" name="drawtype" value="2" ><label>实体模式</label>
+
+            <input type="color" id="objcolor" name="objcolor" value="#000000">
+        </div>
+        
+        <div>
+            <label>改变对象位置</label><input type="radio" id="objpos" name="posgrp" value="1" checked><label>物体位置</label>
+            &nbsp;
+            <input type="radio" id="campos" name="posgrp" value="2"><label>相机位置</label>&nbsp;<label
+                id="projtyperes"></label>
+            <br>
+            <label>x 左</label><input type="range" id="xpos" name="xpos" min="-5.0" max="5.0" step="0.1">右 &nbsp; 
+            <label>x 顺</label><input type="range" id="xrot" name="xrot" min="-360" max="360" step="1.0">逆<br>
+            <label>y 下</label><input type="range" id="ypos" name="ypos" min="-5.0" max="5.0" step="0.1">上 &nbsp;
+            <label>y 顺</label><input type="range" id="yrot" name="yrot" min="-360" max="360" step="1.0">逆<br>
+            <label>z 前</label><input type="range" id="zpos" name="zpos" min="-5.0" max="5.0" step="0.1">后 &nbsp;
+            <label>z 顺</label><input type="range" id="zrot" name="zrot" min="-360" max="360" step="1.0">逆<br>
+			<label> 小</label><input type="range" name="scalescale" id="scale" value="1" min="0" max="2" step="0.01" />大
+        </div>
+		</div>
+    </body>
+</html>
