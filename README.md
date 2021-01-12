@@ -1,5 +1,12 @@
 # xunxunmax.github.io
 ## 个人站点
+
+### 课程设计
+
+|    | 
+| ---- |
+|[实验final](ch01/lab/lab_final/lab_final.html)|
+
 ### 第0章
 
 |    | 
@@ -35,3 +42,15 @@
 |    | 
 | ---- |
 |[实验5](ch01/lab/lab05/lab05_a.html)|
+
+### 第6章
+
+|    | 
+| ---- |
+|[实验6](ch01/lab/lab05/lab05_a.html)|
+
+### 第7章
+
+|    | 
+| ---- |
+|[实验7](ch01/lab/lab05/lab05_a.html)|
