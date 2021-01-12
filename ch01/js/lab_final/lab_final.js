@@ -500,7 +500,54 @@ function initInterface(){//模型输入，网络端口配置，颜色改变，do
 
 	    buildModelViewProj();
 	});
-
+    document.getElementById("zhengzheng").onclick = function () {
+		dx = 0;
+		dy = 0;
+		dz = 0;
+		dxt = 0;
+		dyt = 0;
+        dzt = 0;
+    }
+	document.getElementById("zuozuo").onclick = function () {
+		dx = 0;
+		dy = 0;
+		dz = 0;
+		dxt = 0;
+		dyt = 90;
+	    dzt = 0;
+	}
+	document.getElementById("youyou").onclick = function () {
+		dx = 0;
+		dy = 0;
+		dz = 0;
+		dxt = 0;
+		dyt = -90;
+	    dzt = 0;
+	}
+	document.getElementById("fufu").onclick = function () {
+		dx = 0;
+		dy = 0;
+		dz = 0;
+		dxt = 90;
+		dyt = 0;
+	    dzt = 0;
+	}
+	document.getElementById("beibei").onclick = function () {
+		dx = 0;
+		dy = 0;
+		dz = 0;
+		dxt = 0;
+		dyt = 180;
+	    dzt = 0;
+	}
+	document.getElementById("upup").onclick = function () {
+		dx = 0;
+		dy = 0;
+		dz = 0;
+		dxt = -90;
+		dyt = 0;
+	    dzt = 0;
+	}
     document.getElementById("textureAlpha").addEventListener("input", function(event){
         textureAlpha = parseFloat(event.target.value);
     });
