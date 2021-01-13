@@ -47,7 +47,7 @@
 
 |    |    |
 | ---- | ---- |
-|[实验6-1](ch01/lab/lab06/lab06_a.html)|[实验6-2](ch01/lab/lab06/lab06_b.html)|
+|[实验6-1](ch01/lab/lab06/lab06_ab.html)|[实验6-2](ch01/lab/lab06/lab06_c.html)|
 
 ### 第7章
 
