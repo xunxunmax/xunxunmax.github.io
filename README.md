@@ -5,7 +5,7 @@
 
 |    | 
 | ---- |
-|[实验final](ch01/lab/lab_final/lab_final.html)|
+|[实验final](ch01/coursedesign/examples/coursedesign.html)|
 
 ### 第0章
 
