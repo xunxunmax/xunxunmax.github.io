@@ -45,12 +45,12 @@
 
 ### 第6章
 
-|    | 
-| ---- |
-|[实验6](ch01/lab/lab05/lab05_a.html)|
+|    |    |
+| ---- | ---- |
+|[实验6-1](ch01/lab/lab06/lab06_ab.html)|[实验6-2](ch01/lab/lab06/lab06_c.html)|
 
 ### 第7章
 
-|    | 
-| ---- |
-|[实验7](ch01/lab/lab05/lab05_a.html)|
+|    |    |
+| ---- | ---- |
+|[实验7-1](ch01/lab/lab07/lab07_a.html)|[实验7-2](ch01/lab/lab07/lab07_b.html)|
